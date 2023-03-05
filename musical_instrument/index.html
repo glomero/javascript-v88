@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Piano</title>
+        <link rel="stylesheet" href="index.css">
+        <script src="index.js"></script>
+        
+    </head>
+    <body>
+        <!--  keyboard wrapper -->
+        <div class="piano">
+            <div data-key="do" class="white btn">
+                <h1>do</h1>
+            </div>
+            <div data-key="re" class="white btn">
+                <h1>re</h1>
+            </div>
+            <div data-key="mi" class="white btn">
+                <h1>mi</h1>
+            </div>
+            <div data-key="fa" class="white btn">
+                <h1>fa</h1>
+            </div>
+            <div data-key="sol" class="white btn">
+                <h1>sol</h1>
+            </div>
+            <div data-key="la" class="white btn">
+                <h1>la</h1>
+            </div>
+            <div data-key="ti" class="white btn">
+                <h1>ti</h1>
+            </div>
+            <button id="play-recorded-piano">Play Recorded</button>
+            <button id="auto-compose-piano">Autocompose</button>
+        </div>
+        <audio src="./notes/do.mp3" id="do"></audio>
+        <audio src="./notes/re.mp3" id="re"></audio>
+        <audio src="./notes/mi.mp3" id="mi"></audio>
+        <audio src="./notes/fa.mp3" id="fa"></audio>
+        <audio src="./notes/sol.mp3" id="sol"></audio>
+        <audio src="./notes/la.mp3" id="la"></audio>
+        <audio src="./notes/ti.mp3" id="ti"></audio>
+
+        <div class="xylophone">
+            <div data-key="do" class="white btn">
+                <h1>do</h1>
+            </div>
+            <div data-key="re" class="white btn">
+                <h1>re</h1>
+            </div>
+            <div data-key="mi" class="white btn">
+                <h1>mi</h1>
+            </div>
+            <div data-key="fa" class="white btn">
+                <h1>fa</h1>
+            </div>
+            <div data-key="sol" class="white btn">
+                <h1>sol</h1>
+            </div>
+            <div data-key="la" class="white btn">
+                <h1>la</h1>
+            </div>
+            <div data-key="ti" class="white btn">
+                <h1>ti</h1>
+            </div>
+            <button id="play-recorded-xylophone">Play Recorded</button>
+            <button id="auto-compose-xylophone">Autocompose</button>
+        </div>
+        <audio src="./xylophone/1.wav" id="do-xylophone"></audio>
+        <audio src="./xylophone/2.wav" id="re-xylophone"></audio>
+        <audio src="./xylophone/3.wav" id="mi-xylophone"></audio>
+        <audio src="./xylophone/4.wav" id="fa-xylophone"></audio>
+        <audio src="./xylophone/5.wav" id="sol-xylophone"></audio>
+        <audio src="./xylophone/6.wav" id="la-xylophone"></audio>
+        <audio src="./xylophone/7.wav" id="ti-xylophone"></audio>
+</html>

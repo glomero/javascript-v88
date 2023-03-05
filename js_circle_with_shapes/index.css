@@ -1,0 +1,75 @@
+body {
+	width: 100%;
+	height: 900px;
+}
+
+.circle {
+	position: absolute;
+	border-radius: 100px;
+	display: none;
+	border: 3px solid black;
+}
+
+.buttons_color {
+	position: absolute;
+	z-index: 1;
+	padding-left: 100px;
+}
+
+.btn {
+	text-align: center;
+	margin-top: 50px;
+	margin-right: 10px;
+	padding-left: 10px;
+	width: 60px;
+	height: 40px;
+}
+
+.btn-delete {
+	text-align: center;
+	margin-right: 10px;
+	width: 70px;
+	height: 40px;
+	display: inline-block;
+	vertical-align: 10px;
+	position: relative;
+	font-weight: 900;
+	left: 500px;
+	padding: 10px;
+}
+.shapes {
+	border: 2px solid black;
+	height: 40px;
+	margin-right: 10px;
+	margin-top: 50px;
+	text-align: center;
+	width: 40px;
+	background-color: white;
+}
+#shapes {
+	margin-left: 400px;
+}
+#circle {
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+}
+#square {
+	width: 40px;
+	height: 40px;
+}
+#star {
+	clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+	vertical-align: bottom;
+	margin-top: 0px;
+}
+#starBox {
+	vertical-align: bottom;
+	height: 40px;
+	width: 40px;
+	color: white;
+	display: inline-block;
+	background-color: rgb(168, 33, 33);
+	border-radius: 50%;
+	padding: 2px;
+}
