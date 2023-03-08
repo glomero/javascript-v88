@@ -1,0 +1,13 @@
+body {
+	-webkit-text-stroke: 1px black;
+    background: black;
+	color: white;
+	font-size: 40px;
+	font-family: sans-serif;
+}
+
+img {
+	border-radius: 50%;
+	width: 500px;
+	height: 400px;
+}

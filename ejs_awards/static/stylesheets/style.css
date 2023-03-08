@@ -1,0 +1,18 @@
+#awards img {
+	border-radius: 50%;
+	width: 397px;
+	height: 400px;
+	margin-top: 30px;
+	margin-right: 40px;
+}
+
+h1 {
+	font-family: Helvetica, sans-serif;
+	font-size: 50px;
+	background: rgb(238, 174, 202);
+	background: radial-gradient(circle, rgb(194, 47, 110) 0%, rgba(148, 187, 233, 1) 100%);
+	text-align: center;
+}
+body{
+    background-color: black;
+}
