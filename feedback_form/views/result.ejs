@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Feedback Form</title>
+        <link rel="stylesheet" href="../stylesheets/style.css">
+    </head>
+    <body>
+        <div id="result">
+            <h1>Submitted Entry: </h1>
+            <p>
+                Your Name (Optional) : <%= data.name %>
+            </p>
+            <p>
+                Course Title : <%= data.courseName %>
+            </p>
+            <p>
+                Given Score (1-10) : <%= data.score %>pts
+            </p>
+            <p>
+                Reason: <%= data.reason %>
+            </p>
+            <a href="/">Return</a>
+        </div>
+        
+    </body>
+</html>
