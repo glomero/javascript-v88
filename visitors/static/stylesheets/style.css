@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    text-align: center;
+}
+#content{
+    margin-top: 200px;
+}
+#content h2{
+    margin-top: 40px;
+}
+form{
+    display: inline-block;
+    margin-top: 30px;
+    padding: 7px;
+}
+form input{
+    padding: 10px;
+    box-shadow: 2px 2px red;
+}
