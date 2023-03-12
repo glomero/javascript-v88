@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Feedback Form</title>
+        <link rel="stylesheet" href="../stylesheets/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                let socket = io();
+                let html_str = '';
+                //handle the submit event from the form
+                $('form').submit(function(){
+                    html_str = '';
+                    const form = document.querySelector('form');
+                    // form data into onject type
+                    const data = Object.fromEntries(new FormData(form).entries());
+                    // reset the form field by using querySelector function 'reset'
+                    form.reset();
+                    socket.emit('posting_form', {data: data});
+                    return false;
+                });
+                // listener for the update message that the server will emmit
+                socket.on('updateMessage', function(data){
+                    let info = data.message;
+                    html_str += `<p>You emitted the following information to the server:</p>`;
+                    html_str += `<p>Name: ${info.name}</p>`;
+                    html_str += `<p>Course_title: ${info.courseName}</p>`;
+                    html_str += `<p>Score: ${info.score}</p>`;
+                    html_str += `<p>Reason: ${info.reason}</p>`;
+                });
+                    // listener for the random number that the server will emit
+                    socket.on('randomNumber', function (data) {
+                    html_str += `<p>Your lucky number emitted by the server is:</p>`;
+                    html_str += `<p>${data.randomNumber}</p>`;
+                    $("#details").html(html_str);
+                    $("#details").css('display', 'block');
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <h1>Feedback Form</h1>
+        <div id="details"></div>
+        <form>
+            <p>Your Name (Optional):</p>
+            <input type="text" name="name">
+            <p>Course Title:</p>
+                <select name="courseName" id="courseName">
+                    <option value="PHP Track">PHP Track</option>
+                    <option value="Web Fundamental">Web Fundamental</option>
+                    <option value="Javascript Track">Javascript Track</option>
+                </select>
+            </p>
+            <p>Given Score(1-10):</p>
+                <select name="score" id="score">
+                    <option value="10">10</option>
+                    <option value="9">9</option>
+                    <option value="8">8</option>
+                    <option value="7">7</option>
+                </select>
+            </p>
+            <p>Reason:</p> <textarea name="reason" cols="10" rows="5" placeholder="Reason"></textarea>
+            <input type='submit' value='Submit'>
+        </form>
+    </body>
+</html>
