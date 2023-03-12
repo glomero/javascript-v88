@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Coupons</title>
+    <link rel="stylesheet" href="../stylesheets/style.css">
+</head>
+
+<body>
+    <h1>Welcome Customer!</h1>
+    
+        <p>We're giving away free coupons</p>
+        <p>as token of appreciation</p>
+        
+            <% if (message) { %>
+                <p><%= message %></p>
+                
+                <div class="reset"><a href="/reset">Reset Count</a></div>
+                <% if(counter <= 0) { %>
+                    <div class="claim" style="display: none;"><a href="/claim">Claim Again</a></div>
+                <% } %>
+                <div class="claim"><a href="/claim">Claim Again</a></div>
+
+            <% } else { %>
+                <p>for first <%= counter %> customer(s)</p>
+                <p>Kindly type your name:</p>
+                <form action='/result' method='post'>
+                    <input type="text" name="name">
+                    <input type="submit" value="Submit">
+                </form>
+            <% } %>
+            
+</body>
+
+</html>
