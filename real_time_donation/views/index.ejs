@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Real-Time Donation</title>
+        <link rel="stylesheet" href="../stylesheets/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+        <script type ="text/javascript">
+            $(document).ready(function (){
+                const socket = io(); 
+                // button click event
+                $('.btn').on('click', function(event){
+                    if(event.target.id === 'donate'){
+                        $.get('/donate', function(data){
+                            socket.emit('updateDonation', { msg: 'Thank you for connecting me! -Client' }); 
+                            socket.on('updateAll', function (data) { 
+                                console.log('Current Donation: ', data.donation);
+                                $('#donation').text(data.donation);
+                            });
+                        });
+                    }else if(event.target.id === 'redeem'){
+                        $.get('/redeem', function(data){
+                            socket.emit('updateDonation', { msg: 'Thank you for connecting me! -Client' }); 
+                            socket.on('updateAll', function(data){
+                                console.log('Current donation: ', data.donation);
+                                $('#donation').text(data.donation);
+                            });
+                        });
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div id="content">
+            <h1>Total Cash Donation: $<span id="donation"><%= donation %></span></h1>
+            <p>Give according to one's capacity;</p>
+            <p>Take according to one's need</p>
+            <button id="donate" class="btn">Donate $10</button>
+            <button id="redeem" class="btn">Redeem $10</button>
+        </div>
+    </body>
+</html>
