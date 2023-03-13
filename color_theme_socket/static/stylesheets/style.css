@@ -1,0 +1,16 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+button{
+    margin-left: 200px;
+    margin-top: 100px;
+    padding: 7px;
+    background-color: blue;
+    color: white;
+    box-shadow: 1px 1px black;
+}
+div{
+    width: 900px;
+    margin-left: 190px;
+}

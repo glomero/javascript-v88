@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Color Theme</title>
+        <link rel="stylesheet" href="../stylesheets/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                let socket = io();
+                socket.on('color', function (data) {
+                    $("body").css("background-color", data.color);
+                });
+                $('button').click(function () {
+                    let color = $(this).attr("value");
+                    if(color === 'random'){
+                        socket.emit('clicked', {random: true}); // Emit a 'clicked' event with a 'random' property set to true
+                    }else{
+                        socket.emit('clicked', {color: color}); // Emit a 'clicked' event with a 'color' property set to the color value
+
+                    }
+                    //socket.emit('clicked', color);
+                });
+                
+            
+
+            })
+        </script>
+    </head>
+    <body>
+        <div>
+            <button id="light" value="white">Light mode</button>
+            <button id="random" value='random'>Random mode</button>
+            <button id="Dark" value="black">Dark mode</button>
+        </div>
+    </body>
+</html>
