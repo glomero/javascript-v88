@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Word Chat Game</title>
+        <link rel="stylesheet" href="../stylesheets/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                let socket = io();
+                let name = prompt("Enter your Name: ") //asking for name
+                if(name === null){
+                    window.location.href = '/';
+                }else{
+                    socket.emit('newUser', {name: name});
+                }
+
+                $('form').submit(function(){
+                    const form = document.querySelector('form');
+                    // construct the form data into onject type
+                    const data = Object.fromEntries(new FormData(form).entries());
+                    // reset the form field using querySelector function reset()
+                    form.reset();
+                    socket.emit('postingForm', data);
+                    return false;
+                });
+                
+                socket.on('newUser', function (data) {
+                    $("#log").html(`<p>${data.name} joined the game!</p>`);
+                    $('#log').delay(5000).fadeOut('slow');
+                });
+
+                socket.on('currentUser', function (data) {
+                    $("#currentUser").val(data.name);
+                });
+
+                socket.on('chatUpdate', function (data) {
+                    console.log(data);
+                    let html_str = "";
+                    if (data.length != 0) {
+                        for (let i = 0; i < data.length; i++) {
+                        let message = data[i].message;
+                        if (message.includes("won!")) { // check if the message contains the special winning message
+                            html_str += `<p class="winning-message">${data[i].name} ${message}</p>`; // display the message in green and add a special class to it
+                        } else {
+                            html_str += `<p>${data[i].name} : ${message}</p>`;
+                        }
+                        $("#container").html(html_str);
+                        }
+                    } else {
+                        $("#container").html('Game is start! :)');
+                    }
+                });
+
+            
+
+            });
+
+
+        </script>
+    </head>
+    <body>
+        <h2>Guess the Word:</h2>
+        <p>s _ _ _ e _</p>
+        <div id="container"></div>
+        <form>
+            <input type="text" name="message" placeholder="Enter your guess word here!">
+            <input type="hidden" name="currentUser" id="currentUser">
+            <input type="submit" value="Submit">
+        </form>
+        <div id="log"></div>
+    </body>
+</html>
