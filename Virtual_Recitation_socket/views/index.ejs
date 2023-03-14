@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Virtual Recitation</title>
+        <link rel="stylesheet" href="../stylesheets/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                let socket = io();
+                socket.on('raise', function (data) {
+                    $("#log").append(`<p>Socket ID <strong>${data}</strong> raised hand!</p>`);
+                });
+                socket.on('join', function (data) {
+                    $("#log").append(`<p>Socket ID <strong>${data}</strong> is present!</p>`);
+                });
+                socket.on('left', function (data) {
+                    $("#log").append(`<p>Socket ID <strong>${data}</strong> left.</p>`);
+                });
+                $('#raise').click(function () {
+                    socket.emit('clicked');
+                });
+            })
+        </script>
+    </head>
+    <body>
+        <button id="raise">Raise Hand</button>
+        <div id="log"></div>
+    </body>
+</html>
