@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cryptocurrency</title>
+        <link rel="stylesheet" href="../stylesheets/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $.get('/exchanges', function(data){
+                    for(let res of data) {
+                        $('ul#data').append(`<li>${res.name}</li>`);
+                    }
+                }, 'json');
+
+                $('#exchanges').click(function(){
+                    $.get('/exchanges', function(data){
+                        let list = "";
+                        for(let res of data) {
+                            list += `<li>${res.name}</li>`;
+                        }
+                        $('ul#data').html(list);
+                    }, 'json');
+                    $("#top").show();
+                    $("ul#data").css('height','250px').css('overflow','auto').scrollTop(0);;
+                    return false;
+                });
+                
+                $('#finance').click(function(){
+                    $.get('/finance', function(data){
+                        let list = "";
+                        for(let res of data) {
+                            list += `<li>${res.name}</li>`;
+                        }
+                        $('ul#data').html(list);
+                    }, 'json');
+                    $("#top").show();
+                    $("ul#data").css('height','250px').css('overflow','auto').scrollTop(0);;
+                    return false;
+                });
+
+                //when scroll hits the bottom, append 10 more data to the list
+                document.getElementById('data').addEventListener('scroll', function(event){
+                    let element = event.target;
+                    if (element.scrollHeight - element.scrollTop === element.clientHeight){
+                        $.get('/next', function(data){
+                            let list = "";
+                            for(let res of data) {
+                                list += `<li>${res.name}</li>`;
+                            }
+                            $('ul#data').append(list);
+                        });
+                    }
+                });
+
+                $('#top').click(function(){
+                    $.get('/top', function(data){
+                        let list = "";
+                        for(let res of data) {
+                            list += `<li>${res.name}</li>`;
+                        }
+                        $('ul#data').html(list);
+                    });
+                    $("ul#data").css('height','2750px').css('overflow','visible');
+                    $("#top").hide();
+                    return false;
+                });
+            });
+        </script>
+
+    </head>
+    <body>
+        <div class ="container">
+            <header> 
+                <h1>Cryptocurrency</h1>
+                <div class="urls">
+                    <a id="finance" href="">Finance Platforms</a>
+                    <a id="exchanges" href="">Exchanges</a>
+                </div>
+            </header>
+            <ul id="data">
+            </ul>
+            <div class="buttons">
+                <button id="top" class="all">List Top 100</button>
+            </div>
+        </div>
+    </body>
+</html>
